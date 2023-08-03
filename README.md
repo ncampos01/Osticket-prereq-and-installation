@@ -1,4 +1,4 @@
-# Osticket-prereq-and-installation
+# Osticket Prereq and Installation
 <p align="center">
 <img src="https://i.imgur.com/Clzj7Xs.png" alt="osTicket logo"/>
 </p>
@@ -17,7 +17,7 @@ This guideline outlines the prerequisites and installation of the open-source he
 
 <h2>Operating Systems Used </h2>
 
-- Windows 10</b> (21H2)
+- Windows 10</b> (21H2) (4vCPU)
 
 <h2>List of Prerequisites</h2>
 
@@ -54,117 +54,135 @@ World Wide Web Services -> Application Development Features -></li>
 	     <li>IIS Management Console</li>
 </ul><!-- end of main list --> </ul>
 
+<img src="https://support.winhost.com/AvatarHandler.ashx?fid=2777549&key=3721805266">
+ 
+
 
 - From the Installation Files, download and install PHP Manager for IIS (PHPManagerForIIS_V1.5.0.msi)
 
 - From the Installation Files, download and install the Rewrite Module (rewrite_amd64_en-US.msi)
+<ul><!--Start of main list -->
+    <li>Create the directory C:\PHP
+      <ul><!--Start of nested list--> 
+          <li>From the Installation Files, download PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) and unzip the contents into C:\PHP</li>
+      </ul><!--End of nested list-->
+    </li>
+</ul><!--End of main list-->
 
-- Create the directory C:\PHP
-          ⧫From the Installation Files, download PHP 7.3.8 (php-7.3.8-nts-Win32-VC15-x86.zip) and unzip the contents into C:\PHP
-- !! ATTENTION !!
-If this appears, choose to “Keep” the file:
+ <ul><!--Start main list-->
+     <li>From the Installation Files, download and install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
+ <ul><!--Start of nested list-->
+	 <li>Typical Setup ->
+         <li>Launch Configuration Wizard (after install) ->
+         <li>Standard Configuration ->
+         <li>Password1</li>
+ </ul><!--End of nested list-->
+     </li>
+ </ul><!--End of main list-->
+ 
 
+<ul><!--Start of main list-->
+	<li>Open IIS as an Admin
+ <ul><!--Start of nested list-->
+     <li>Register PHP from within IIS
+     <li>Reload IIS (Open IIS, Stop and Start the server)
+     <li>Install osTicket v1.15.8
+     <li>Download osTicket from the Installation Files Folder
+     <li>Extract and copy “upload” folder to c:\inetpub\wwwroot
+     <li>Within c:\inetpub\wwwroot, Rename “upload” to “osTicket”
+     <li>Reload IIS (Open IIS, Stop and Start the server)</li>
+ </ul><!--End of nestted list-->
+	</li>
 
+ </ul><!--End of main list-->
+ 
+<ul><!--Start of main list-->
+	<li>Go to sites -> Default -> osTicket
+<ul><!--Start of nested list-->
+	<li>On the right, click “Browse *:80”</li>
+</ul><!--End of nested list-->
+	</li> 
+</ul><!--End of main list-->
 
-        ⧫From the Installation Files, download and install VC_redist.x86.exe.
+- !Note that some extensions are not enabled!
+<ul><!--Start of main list-->
+	<li>Go back to IIS, sites -> Default -> osTicket
+		<ul><!--Start of nested list-->
+			<li>Double-click PHP Manager
+			<li>Click “Enable or disable an extension”
+			<li>Enable: php_imap.dll
+			<li>Enable: php_intl.dll
+			<li>Enable: php_opcache.dll</li>
+		</ul><!--End of nested list-->
+	<li>Refresh the osTicket site in your browse, observe the changes
+	</li>
+</ul><!--End of main list-->
 
-From the Installation Files, download and install MySQL 5.5.62 (mysql-5.5.62-win32.msi)
-Typical Setup ->
-Launch Configuration Wizard (after install) ->
-Standard Configuration ->
-Password1
+<ul><!--Start of main list-->
+	<li>Rename: ost-config.php
+		<ul><!--Start of nested list-->
+			<li>From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
+			<li>To: C:\inetpub\wwwroot\osTicket\include\ost-config.php</li>
+		</ul><!--End of nested list-->
+	</li>
+</ul><!--End of main list-->
 
-Open IIS as an Admin
+<ul><!--Start of main list-->
+        <li>Assign Permissions: ost-config.php
+		<ul><!--Start of nested list-->
+			<li>Disable inheritance -> Remove All
+			<li>New Permissions -> Everyone -> All</li>
+		</ul><!--End of nested list-->
+	</li>
+</ul><!--End of main list-->
 
-Register PHP from within IIS
+<ul><!--Start of main list-->
+	<li>Continue Setting up osTicket in the browser (click Continue)
+		<ul><!--Start of nested list-->
+			<li>Name Helpdesk
+			<li>Default email (receives email from customers)</li>
+		</ul><!--End of nested list-->
+	</li>
+</ul><!--End of main list-->
 
-Reload IIS (Open IIS, Stop and Start the server)
+<ul><!--Start of main list-->
+        <li>From the  <a href="https://drive.google.com/drive/u/1/folders/1APMfNyfNzcxZC6EzdaNfdZsUwxWYChf6"> Installation Files </a>, download and install HeidiSQL.
+		<ul><!--Start of nested list-->
+			<li>Open Heidi SQL
+			<li>Create a new session, root/Password1
+			<li>Connect to the session
+			<li>Create a database called “osTicket”</li>
+		</ul><!--End of nested list-->
+	</li>
+</ul><!--End of main list-->
 
-Install osTicket v1.15.8
-Download osTicket from the Installation Files Folder
-Extract and copy “upload” folder to c:\inetpub\wwwroot
-Within c:\inetpub\wwwroot, Rename “upload” to “osTicket”
+<ul><!--Start of main list-->
+        <li>Continue Setting up osTicket in the browser
+		<ul><!--Startr of nested list-->
+			<li>MySQL Database: osTicket
+			<li>MySQL Username: root
+			<li>MySQL Password: Password1 (to make it easier to remember)
+			<li>Click “Install Now!”</li>
+		</ul><!--End of nested list-->
+	</li>
+</ul><!--End of main list-->
 
-Reload IIS (Open IIS, Stop and Start the server)
-
-Go to sites -> Default -> osTicket
-On the right, click “Browse *:80”
-
-Note that some extensions are not enabled
-Go back to IIS, sites -> Default -> osTicket
-Double-click PHP Manager
-Click “Enable or disable an extension”
-Enable: php_imap.dll
-Enable: php_intl.dll
-Enable: php_opcache.dll
-Refresh the osTicket site in your browse, observe the changes
-
-Rename: ost-config.php
-From: C:\inetpub\wwwroot\osTicket\include\ost-sampleconfig.php
-To: C:\inetpub\wwwroot\osTicket\include\ost-config.php
-
-Assign Permissions: ost-config.php
-Disable inheritance -> Remove All
-New Permissions -> Everyone -> All
-
-Continue Setting up osTicket in the browser (click Continue)
-Name Helpdesk
-Default email (receives email from customers)
-
-From the Installation Files, download and install HeidiSQL.
-Open Heidi SQL
-Create a new session, root/Password1
-Connect to the session
-Create a database called “osTicket”
-
-Continue Setting up osTicket in the browser
-MySQL Database: osTicket
-MySQL Username: root
-MySQL Password: Password1 (to make it easier to remember)
-Click “Install Now!”
-
-Congrats, IF it is installed with no errors!
+- Congrats, IF it is installed with no errors!
 Browse to your help desk login page: http://localhost/osTicket/scp/login.php
 
-End Users osTicket URL:
+- End Users osTicket URL:
 http://localhost/osTicket/ 
 
-Clean up
-Delete: C:\inetpub\wwwroot\osTicket\setup
-Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php
+<ul><!--Start of main list-->
+	<li>Clean up
+		<ul><!--Star of nested list-->
+			<li>Delete: C:\inetpub\wwwroot\osTicket\setup
+			<li>Set Permissions to “Read” only: C:\inetpub\wwwroot\osTicket\include\ost-config.php</li>
+		</ul><!--End of nested list-->
+	</li>
+</ul><!--End of main list-->
 
-Notes:
+- Notes:
 Browse to your help desk login page: http://localhost/osTicket/scp/login.php  
 End Users osTicket URL: http://localhost/osTicket/ 
-
-
-
-
-
-
-
-
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-</p>
 <br />
